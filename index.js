@@ -1,4 +1,4 @@
-//Add sounds to drum buttons
+//Play sounds if buttons are pressed
 var drums = document.querySelectorAll(".drum");
 
 for (var i = 0; i < drums.length; i++) {
@@ -6,10 +6,21 @@ for (var i = 0; i < drums.length; i++) {
 }
 
 function handleClick() {
-  // Playsound
   var buttonInnerHTML = this.innerHTML;
+  makeSound(buttonInnerHTML);
+}
 
-  switch (buttonInnerHTML) {
+//Play sounds when certain keys are pressed
+document.addEventListener("keydown", keyPressed);
+
+function keyPressed(key) {
+  makeSound(event.key);
+}
+
+//Play sounds
+function makeSound(key) {
+
+  switch (key) {
 
     case "w":
       var tom1 = new Audio('sounds/tom-1.mp3');
@@ -46,9 +57,7 @@ function handleClick() {
         kick.play();
         break;
 
-    default: console.log(buttonInnerHTML);
-
+    default: console.log(key);
   }
-
 
 }
