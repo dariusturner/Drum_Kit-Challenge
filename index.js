@@ -8,6 +8,7 @@ for (var i = 0; i < drums.length; i++) {
 function handleClick() {
   var buttonInnerHTML = this.innerHTML;
   makeSound(buttonInnerHTML);
+  buttonAnimation(buttonInnerHTML);
 }
 
 //Play sounds when certain keys are pressed
@@ -15,6 +16,7 @@ document.addEventListener("keydown", keyPressed);
 
 function keyPressed(key) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 }
 
 //Play sounds
@@ -59,5 +61,15 @@ function makeSound(key) {
 
     default: console.log(key);
   }
+}
 
+
+function buttonAnimation(currentKey) {
+  if(currentKey == "w" || currentKey == "a" || currentKey == "s" || currentKey == "d" || currentKey == "j" || currentKey == "k" || currentKey == "l") {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+      activeButton.classList.remove("pressed");
+    }, 200);
+  }
 }
